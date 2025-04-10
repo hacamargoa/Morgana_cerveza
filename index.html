@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: Egocentrica;
-            background-image: url('LogoT.png');
             background-size: cover;
             background-attachment: fixed;
             height: 100vh;
@@ -46,6 +45,50 @@
                 .sidebar a:hover {
                     background-color: #333;
                 }
+        .container {
+            display: flex;
+            height: 100vh;
+            margin-left: 250px;
+        }
+
+        .left {
+            width: 50%;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .right {
+            width:50%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            position: absolute;
+            top: 25px;
+            left: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            border-radius: 20px;
+        }
+
+            .slider img.active {
+                opacity: 1;
+                
+            }
 
         /* Page content */
         .content {
@@ -81,16 +124,39 @@
         <a href="Otros.html">Eventos y promociones</a>
     </nav>
 
-    <div class="content">
-        <!-- Home Section -->
-        <section id="home">
-            <center><img src="Titulo.png" alt="Titulo" border="2"></center>
-            <center><h1><u>Encanto cervecero</u></h1></center>
-            <h2>Bienvenido a Morgana</h2>
-            <p>Contenido de la sección de inicio...</p>
-        </section>
+    <div class="container">
+            <!-- Lado izquierdo con el logo -->
+        <div class="left">
+            <div class="left-content">
+                <img src="LogoT.png" alt="Logo" style="max-width: 95%; height: auto;">
+                <p style="margin: 1px; font-size: 1.5em;">¡¡Bienvenidos a Morgana!!</p>
+                <p style="margin: 1px; font-size: 1.5em;">Encanto cervecero</p>
+            </div>
+        </div>
 
-       
+        <!-- Lado derecho con loop de fotos -->
+         <div class="right">
+             <div class="slider">
+                 <img src="Tamanos.jpg" class="active" alt="Foto 1">
+                 <img src="Roja.jpeg" alt="Foto 2">
+                 <img src="Roja2.jpg" alt="Foto 3">
+                 <img src="Tamanos2.jpg" alt="Foto 3">
+             </div>
+          </div>
+      </div>
+
+        <script>
+            const images = document.querySelectorAll('.slider img');
+            let index = 0;
+
+            setInterval(() => {
+                images[index].classList.remove('active');
+                index = (index + 1) % images.length;
+                images[index].classList.add('active');
+            }, 3000); // cambia cada 3 segundos
+        </script>
+
+
 </body>
 </html>
 
