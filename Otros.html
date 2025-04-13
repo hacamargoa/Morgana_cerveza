@@ -27,6 +27,9 @@
             flex-direction: column;
             padding-top: 40px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+            transform: translateX(-100%); /* Oculta la sidebar hacia la izquierda */
+            transition: transform 0.3s ease;
+            z-index: 1000;
         }
 
             .sidebar img {
@@ -46,15 +49,13 @@
                 .sidebar a:hover {
                     background-color: #333;
                 }
+            .sidebar.active {
+                transform: translateX(0); /* Muestra la sidebar cuando tiene la clase "active" */
+            }
 
         /* Page content */
         .content {
-            margin-left: 250px;
-            padding: 40px;
-        }
-
-        .content {
-            margin-left: 250px;
+            margin-left: 10px;
             padding: 0;
             height: 100vh; /* Full height of the viewport */
             overflow-y: auto; /* Enable scrolling if the content is larger than the screen */
@@ -65,19 +66,30 @@
             padding: 60px 20px;
             margin-bottom: 40px;
         }
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1100;
+        }
     </style>
 
 </head>
 <body>
-
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
     <nav class="sidebar">
 
         <img src="Titulo.png" alt="Morgana Logo" style="width: 150px; margin: 0 auto 30px; display: block;">
         <a href="index.html">Inicio</a>
         <a href="Cervezas.html">Nuestras cervezas</a>
-        <a href="Otros.html">Sobre Morgana</a>
-        <a href="Otros.html">Donde encontrarnos</a>
-        <a href="Otros.html">Eventos y promociones</a>
+        <a href="Otros.html#sobre">Sobre Morgana</a>
+        <a href="Otros.html#donde">Donde encontrarnos</a>
+        <a href="Otros.html#eventos">Eventos y promociones</a>
     </nav>
 
     <div class="content">
@@ -99,4 +111,9 @@
         </section>
     </div>
 </body>
+<script>
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('active');
+    }
+</script>
 </html>

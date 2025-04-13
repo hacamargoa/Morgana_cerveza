@@ -27,6 +27,9 @@
             flex-direction: column;
             padding-top: 40px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+            transform: translateX(-100%); /* Oculta la sidebar hacia la izquierda */
+            transition: transform 0.3s ease;
+            z-index: 1000;
         }
 
             .sidebar img {
@@ -47,14 +50,14 @@
                     background-color: #333;
                 }
 
-        /* Page content */
-        .content {
-            margin-left: 250px;
-            padding: 40px;
-        }
+            .sidebar.active {
+                transform: translateX(0); /* Muestra la sidebar cuando tiene la clase "active" */
+            }
 
+        /* Page content */
+        
         .content {
-            margin-left: 250px;
+            margin-left: 10px;
             padding: 0;
             height: 100vh; /* Full height of the viewport */
             overflow-y: auto; /* Enable scrolling if the content is larger than the screen */
@@ -65,10 +68,23 @@
             padding: 60px 20px;
             margin-bottom: 40px;
         }
+
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1100;
+        }
     </style>
 
 </head>
 <body>
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
 
     <nav class="sidebar">
 
@@ -80,19 +96,22 @@
         <a href="Cervezas.html">Eventos y promociones</a>
     </nav>
 
-    <div class="content">
+    <div>
+        <class="content">
         <!-- Nuestras Cervezas Section -->
         <section id="cervezas">
             <center><img src="Titulo.png" alt="Titulo" border="2"></center>
             <center><h1><u>Encanto cervecero</u></h1></center>
             <hr>
-            <ul>
-                <li>
-                    <h2><b>Cerveza Dubbel: roja </b></h2>
-                    <center><img src="Dubbel1.png" alt="Dubbel Beer" border="1"></center>
-                    <p><font size="5">Dubbel es la denominación de una cerveza trapista belga. El origen de la dubbel fue una cerveza producida en la abadía trapense de Westmalle en 1856...</font></p>
-                    <p><font size="5">Westmalle Dubbel fue imitada por otras cervecerías, trapenses y seculares, belgas y en otros sitios del mundo...</font></p>
-                    <table border="10" cellpadding="10">
+            <ul style="padding: 0;">
+                <div style="border: 2px solid #444; padding: 20px; margin-bottom: 40px; border-radius: 10px; background-color: #f9f9f9;">
+                    <h2><b>Cerveza Dubbel: Roja </b></h2>
+                    <div style="text-align: center;">
+                        <img src="Roja.jpeg" alt="Roja Beer" style="width: 400px; border: 3px solid black">
+                    </div>
+                    <p style="font-size: 1.2em;">Dubbel es la denominación de una cerveza trapista belga...</p>
+                    <p style="font-size: 1.2em;">Westmalle Dubbel fue imitada por otras cervecerías...</p>
+                    <table border="1" cellpadding="10" style="margin: auto; text-align: center; font-size: 1.1em;">
                         <tr>
                             <th>ABU</th>
                             <th>IBU</th>
@@ -104,23 +123,62 @@
                             <td>330 cm³</td>
                         </tr>
                     </table>
-                </li>
+                </div>
 
-                <li>
-                    <h2><b>Cerveza IPA: lupulada</b></h2>
-                    <!-- Add image and description for IPA beer -->
-                </li>
 
-                <li>
+
+
+                <div style="border: 2px solid #444; padding: 20px; margin-bottom: 40px; border-radius: 10px; background-color: #f9f9f9;">
+
+                    <h2><b>Cerveza IPA: Cerveza Lupulada</b></h2>
+                    <center><img src="Ipa.jpeg" alt="IPA Beer" style="width: 400px; border: 3px solid black"></center>
+                    <p><font size="5">IPA es la denominacion para Indian Pale Ale, dado que se desarrollo para soportar el viaje de los britanicos a India ...</font></p>
+                    <p><font size="5">Es una de las cervezas mas famosas actualmente por su alto contenido de lupulo ue permite diferentes mezclas de sabores y aromas...</font></p>
+                    <table border="1" cellpadding="10" style="margin: auto; text-align: center; font-size: 1.1em;">
+                        <tr>
+                            <th>ABU</th>
+                            <th>IBU</th>
+                            <th>VOL</th>
+                        </tr>
+                        <tr>
+                            <td>6%</td>
+                            <td>70</td>
+                            <td>330 cm³</td>
+                        </tr>
+                    </table>
+
+                </div>
+
+                <div style="border: 2px solid #444; padding: 20px; margin-bottom: 40px; border-radius: 10px; background-color: #f9f9f9;">
+
                     <h2><b>Cerveza Stout</b></h2>
-                    <!-- Add image and description for Stout beer -->
-                </li>
+                    <center><img src="Stout.jpeg" alt="Stout Beer" style="width: 400px; border: 3px solid black"></center>
+                    <p><font size="5">Stout es un tipo de cerveza Irlandesa conocida por sus sabores achocolatados de la malta y dulzor...</font></p>
+                    <p><font size="5">Es una de las mas suaves en alcohol y al paladar...</font></p>
+                    <table border="1" cellpadding="10" style="margin: auto; text-align: center; font-size: 1.1em;">
+                        <tr>
+                            <th>ABU</th>
+                            <th>IBU</th>
+                            <th>VOL</th>
+                        </tr>
+                        <tr>
+                            <td>4%</td>
+                            <td>10</td>
+                            <td>330 cm³</td>
+                        </tr>
+                    </table>
+
+                </div>
             </ul>
         </section>
-       
     </div>
 
 </body>
+<script>
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('active');
+    }
+</script>
 </html>
 
 
