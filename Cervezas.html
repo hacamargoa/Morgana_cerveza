@@ -76,7 +76,7 @@
             font-size: 30px;
             background: none;
             border: none;
-            color: white;
+            color: black;
             cursor: pointer;
             z-index: 1100;
         }
@@ -85,8 +85,7 @@
 </head>
 <body>
     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-
-    <nav class="sidebar">
+    <nav class="sidebar" onmouseleave="hideSidebar()">
 
         <img src="Titulo.png" alt="Morgana Logo" style="width: 150px; margin: 0 auto 30px; display: block;">
         <a href="index.html">Inicio</a>
@@ -176,8 +175,17 @@
 </body>
 <script>
     function toggleSidebar() {
-        document.querySelector('.sidebar').classList.toggle('active');
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const sidebar = document.querySelector('.sidebar');
+
+        sidebar.addEventListener('mouseleave', () => {
+            sidebar.classList.remove('active');
+        });
+    });
 </script>
 </html>
 

@@ -53,36 +53,64 @@
                 transform: translateX(0); /* Muestra la sidebar cuando tiene la clase "active" */
             }
 
-        /* Page content */
-        .content {
-            margin-left: 10px;
-            padding: 0;
-            height: 100vh; /* Full height of the viewport */
-            overflow-y: auto; /* Enable scrolling if the content is larger than the screen */
+        .top-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        section {
-            min-height: 100vh; /* Full screen height for each section */
-            padding: 60px 20px;
-            margin-bottom: 40px;
-        }
-        .menu-toggle {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            font-size: 30px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            z-index: 1100;
-        }
+            .top-banner img {
+                max-width: 250px;
+                height: auto;
+            }
+
+        @media (max-width: 768px) {
+            .top-banner img {
+                max-width: 80%;
+            }
+
+            .content {
+                margin-top: 140px;
+                padding: 15px;
+            }
+            /* Page content */
+            .content {
+                margin-left: 10px;
+                margin-top: 160px; /* Push content down so it's not hidden under fixed header */
+                padding: 20px;
+                height: 100vh; /* Full height of the viewport */
+                overflow-y: auto; /* Enable scrolling if the content is larger than the screen */
+            }
+
+            section {
+                min-height: 100vh; /* Full screen height for each section */
+                padding: 60px 20px;
+                margin-bottom: 40px;
+            }
+
+            .menu-toggle {
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                font-size: 30px;
+                background: none;
+                border: none;
+                color: black;
+                cursor: pointer;
+                z-index: 1100;
+            }
     </style>
 
 </head>
 <body>
     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-    <nav class="sidebar">
+    <nav class="sidebar" onmouseleave="hideSidebar()">
 
         <img src="Titulo.png" alt="Morgana Logo" style="width: 150px; margin: 0 auto 30px; display: block;">
         <a href="index.html">Inicio</a>
@@ -92,10 +120,14 @@
         <a href="Otros.html#eventos">Eventos y promociones</a>
     </nav>
 
+
+    <div class="top-banner">
+        <center><img src="Titulo.png" alt="Titulo" border="2"></center>
+        <center><h1><u>Encanto cervecero</u></h1></center>
+        <hr>
+    </div>
     <div class="content">
         <section id="sobre">
-            <center><img src="Titulo.png" alt="Titulo" border="2"></center>
-            <center><h1><u>Encanto cervecero</u></h1></center>
             <h2>Sobre Morgana</h2>
             <p>Historia y misión...</p>
         </section>
@@ -113,7 +145,16 @@
 </body>
 <script>
     function toggleSidebar() {
-        document.querySelector('.sidebar').classList.toggle('active');
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const sidebar = document.querySelector('.sidebar');
+
+        sidebar.addEventListener('mouseleave', () => {
+            sidebar.classList.remove('active');
+        });
+    });
 </script>
 </html>
